@@ -1,0 +1,219 @@
+[
+  {
+    "name": "Armor",
+    "resource": "generic.armor",
+    "min": 0.0,
+    "max": 30.0,
+    "default": 0.0
+  },
+  {
+    "name": "Armor Toughness",
+    "resource": "generic.armor_toughness",
+    "min": 0.0,
+    "max": 20.0,
+    "default": 0.0
+  },
+  {
+    "name": "Attack Damage",
+    "resource": "generic.attack_damage",
+    "min": 0.0,
+    "max": 2048.0,
+    "default": 2.0
+  },
+  {
+    "name": "Attack Knockback",
+    "resource": "generic.attack_knockback",
+    "min": 0.0,
+    "max": 5.0,
+    "default": 0.0
+  },
+  {
+    "name": "Attack Speed",
+    "resource": "generic.attack_speed",
+    "min": 0.0,
+    "max": 1024.0,
+    "default": 4.0
+  },
+  {
+    "name": "Block Break Speed",
+    "resource": "player.block_break_speed",
+    "min": 0.0,
+    "max": 1024.0,
+    "default": 1.0
+  },
+  {
+    "name": "Block Interaction Range",
+    "resource": "player.block_interaction_range",
+    "min": 0.0,
+    "max": 64.0,
+    "default": 4.5
+  },
+  {
+    "name": "Burning Time",
+    "resource": "generic.burning_time",
+    "min": 0.0,
+    "max": 1024.0,
+    "default": 1.0
+  },
+  {
+    "name": "Explosion Knockback Resistance",
+    "resource": "generic.explosion_knockback_resistance",
+    "min": 0.0,
+    "max": 1.0,
+    "default": 0.0
+  },
+  {
+    "name": "Entity Interaction Range",
+    "resource": "player.entity_interaction_range",
+    "min": 0.0,
+    "max": 64.0,
+    "default": 3.0
+  },
+  {
+    "name": "Fall Damage Multiplier",
+    "resource": "generic.fall_damage_multiplier",
+    "min": 0.0,
+    "max": 100.0,
+    "default": 1.0
+  },
+  {
+    "name": "Flying Speed",
+    "resource": "generic.flying_speed",
+    "min": 0.0,
+    "max": 1024.0,
+    "default": 0.4
+  },
+  {
+    "name": "Mob Follow Range",
+    "resource": "generic.follow_range",
+    "min": 0.0,
+    "max": 2048.0,
+    "default": 32.0
+  },
+  {
+    "name": "Gravity",
+    "resource": "generic.gravity",
+    "min": -1.0,
+    "max": 1.0,
+    "default": 0.08
+  },
+  {
+    "name": "Jump Strength",
+    "resource": "generic.jump_strength",
+    "min": 0.0,
+    "max": 32.0,
+    "default": 0.41999998688697815
+  },
+  {
+    "name": "Knockback Resistance",
+    "resource": "generic.knockback_resistance",
+    "min": 0.0,
+    "max": 1.0,
+    "default": 0.0
+  },
+  {
+    "name": "Luck",
+    "resource": "generic.luck",
+    "min": -1024.0,
+    "max": 1024.0,
+    "default": 0.0
+  },
+  {
+    "name": "Max Absorption",
+    "resource": "generic.max_absorption",
+    "min": 0.0,
+    "max": 2048.0,
+    "default": 0.0
+  },
+  {
+    "name": "Max Health",
+    "resource": "generic.max_health",
+    "min": 1.0,
+    "max": 1024.0,
+    "default": 20.0
+  },
+  {
+    "name": "Mining Efficiency",
+    "resource": "player.mining_efficiency",
+    "min": 0.0,
+    "max": 1024.0,
+    "default": 0.0
+  },
+  {
+    "name": "Movement Efficiency",
+    "resource": "generic.movement_efficiency",
+    "min": 0.0,
+    "max": 1.0,
+    "default": 0.0
+  },
+  {
+    "name": "Speed",
+    "resource": "generic.movement_speed",
+    "min": 0.0,
+    "max": 1024.0,
+    "default": 0.7
+  },
+  {
+    "name": "Oxygen Bonus",
+    "resource": "generic.oxygen_bonus",
+    "min": 0.0,
+    "max": 1024.0,
+    "default": 0.0
+  },
+  {
+    "name": "Safe Fall Distance",
+    "resource": "generic.safe_fall_distance",
+    "min": -1024.0,
+    "max": 1024.0,
+    "default": 3.0
+  },
+  {
+    "name": "Scale",
+    "resource": "generic.scale",
+    "min": 0.0625,
+    "max": 16.0,
+    "default": 1.0
+  },
+  {
+    "name": "Sneaking Speed",
+    "resource": "player.sneaking_speed",
+    "min": 0.0,
+    "max": 1.0,
+    "default": 0.3
+  },
+  {
+    "name": "Zombie Reinforcements",
+    "resource": "zombie.spawn_reinforcements",
+    "min": 0.0,
+    "max": 1.0,
+    "default": 0.0
+  },
+  {
+    "name": "Step Height",
+    "resource": "generic.step_height",
+    "min": 0.0,
+    "max": 10.0,
+    "default": 0.6
+  },
+  {
+    "name": "Submerged Mining Speed",
+    "resource": "player.submerged_mining_speed",
+    "min": 0.0,
+    "max": 20.0,
+    "default": 0.2
+  },
+  {
+    "name": "Sweeping Damage Ratio",
+    "resource": "player.sweeping_damage_ratio",
+    "min": 0.0,
+    "max": 1.0,
+    "default": 0.0
+  },
+  {
+    "name": "Water Movement Efficiency",
+    "resource": "generic.water_movement_efficiency",
+    "min": 0.0,
+    "max": 1.0,
+    "default": 0.0
+  }
+]
