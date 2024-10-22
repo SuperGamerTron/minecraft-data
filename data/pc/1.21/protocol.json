@@ -1636,11 +1636,45 @@
                   "container",
                   [
                     {
-                      "name": "position",
-                      "type": "string"
+                      "name": "positionType",
+                      "type": [
+                        "mapper",
+                        {
+                          "type": "varint",
+                          "mappings": {
+                            "0": "block",
+                            "1": "entity"
+                          }
+                        }
+                      ]
                     },
                     {
+                      "name": "position",
+                      "type":[
+                        "switch",
+                        {
+                          "compareTo": "positionType",
+                          "fields": {
+                            "block": "position",
+                            "entity": [
+                              "container",
+                              [
+                    {
                       "name": "entityId",
+                      "type": "varint"
+                                },
+                                {
+                                  "name": "entityEyeHeight",
+                                  "type": "f32"
+                                }
+                              ]
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "name": "ticks",
                       "type": "varint"
                     }
                   ]
