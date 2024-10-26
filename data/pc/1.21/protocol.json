@@ -41,6 +41,19 @@
         "countType": "varint"
       }
     ],
+    "vec2f": [
+      "container",
+      [
+        {
+          "name": "x",
+          "type": "f32"
+        },
+        {
+          "name": "y",
+          "type": "f32"
+        }
+      ]
+    ],
     "vec3f": [
       "container",
       [
@@ -117,46 +130,47 @@
           "13": "custom_model_data",
           "14": "hide_additional_tooltip",
           "15": "hide_tooltip",
-          "16": "creative_slot_lock",
-          "17": "enchantment_glint_override",
-          "18": "intangible_projectile",
-          "19": "food",
-          "20": "fire_resistant",
-          "21": "tool",
-          "22": "stored_enchantments",
-          "23": "dyed_color",
-          "24": "map_color",
-          "25": "map_id",
-          "26": "map_decorations",
-          "27": "map_post_processing",
-          "28": "charged_projectiles",
-          "29": "bundle_contents",
-          "30": "potion_contents",
-          "31": "suspicious_stew_effects",
-          "32": "writable_book_content",
-          "33": "written_book_content",
-          "34": "trim",
-          "35": "debug_stick_state",
-          "36": "entity_data",
-          "37": "bucket_entity_data",
-          "38": "block_entity_data",
-          "39": "instrument",
-          "40": "ominous_bottle_amplifier",
-          "41": "jukebox_playable",
-          "42": "recipes",
-          "43": "lodestone_tracker",
-          "44": "firework_explosion",
-          "45": "fireworks",
-          "46": "profile",
-          "47": "note_block_sound",
-          "48": "banner_patterns",
-          "49": "base_color",
-          "50": "pot_decorations",
-          "51": "container",
-          "52": "block_state",
-          "53": "bees",
-          "54": "lock",
-          "55": "container_loot"
+          "16": "repair_cost",
+          "17": "creative_slot_lock",
+          "18": "enchantment_glint_override",
+          "19": "intangible_projectile",
+          "20": "food",
+          "21": "fire_resistant",
+          "22": "tool",
+          "23": "stored_enchantments",
+          "24": "dyed_color",
+          "25": "map_color",
+          "26": "map_id",
+          "27": "map_decorations",
+          "28": "map_post_processing",
+          "29": "charged_projectiles",
+          "30": "bundle_contents",
+          "31": "potion_contents",
+          "32": "suspicious_stew_effects",
+          "33": "writable_book_content",
+          "34": "written_book_content",
+          "35": "trim",
+          "36": "debug_stick_state",
+          "37": "entity_data",
+          "38": "bucket_entity_data",
+          "39": "block_entity_data",
+          "40": "instrument",
+          "41": "ominous_bottle_amplifier",
+          "42": "jukebox_playable",
+          "43": "recipes",
+          "44": "lodestone_tracker",
+          "45": "firework_explosion",
+          "46": "fireworks",
+          "47": "profile",
+          "48": "note_block_sound",
+          "49": "banner_patterns",
+          "50": "base_color",
+          "51": "pot_decorations",
+          "52": "container",
+          "53": "block_state",
+          "54": "bees",
+          "55": "lock",
+          "56": "container_loot"
         }
       }
     ],
@@ -1622,11 +1636,45 @@
                   "container",
                   [
                     {
-                      "name": "position",
-                      "type": "string"
+                      "name": "positionType",
+                      "type": [
+                        "mapper",
+                        {
+                          "type": "varint",
+                          "mappings": {
+                            "0": "block",
+                            "1": "entity"
+                          }
+                        }
+                      ]
                     },
                     {
+                      "name": "position",
+                      "type":[
+                        "switch",
+                        {
+                          "compareTo": "positionType",
+                          "fields": {
+                            "block": "position",
+                            "entity": [
+                              "container",
+                              [
+                    {
                       "name": "entityId",
+                      "type": "varint"
+                                },
+                                {
+                                  "name": "entityEyeHeight",
+                                  "type": "f32"
+                                }
+                              ]
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "name": "ticks",
                       "type": "varint"
                     }
                   ]
@@ -1854,13 +1902,81 @@
                 "optional_unsigned_int": "optvarint",
                 "pose": "varint",
                 "cat_variant": "varint",
-                "wolf_variant": "varint",
+                "wolf_variant": [
+                  "container",
+                  [
+                    {
+                      "name": "wildTexture",
+                      "type": "string"
+                    },
+                    {
+                      "name": "tameTexture",
+                      "type": "string"
+                    },
+                    {
+                      "name": "angryTexture",
+                      "type": "string"
+                    },
+                    {
+                      "name": "maybeInputLength",
+                      "type": "varint"
+                    },
+                    {
+                      "name": "biomeLocation",
+                      "type": [
+                        "switch",
+                        {
+                          "compareTo": "maybeInputLength",
+                          "fields": {
+                            "0": "string"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "name": "biomeHolders",
+                      "type": [
+                        "switch",
+                        {
+                          "compareTo": "maybeInputLength",
+                          "fields": {
+                            "0": "void"
+                          },
+                          "default": [
+                            "arrayWithLengthOffset",
+                            {
+                              "count": "type",
+                              "type": "varint",
+                              "lengthOffset": -1
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                ],
                 "frog_variant": "varint",
                 "optional_global_pos": [
                   "option",
                   "string"
                 ],
-                "painting_variant": "varint",
+                "painting_variant": [
+                  "container",
+                  [
+                    {
+                      "name": "width",
+                      "type": "varint"
+                    },
+                    {
+                      "name": "height",
+                      "type": "varint"
+                    },
+                    {
+                      "name": "assetId",
+                      "type": "string"
+                    }
+                  ]
+                ],
                 "sniffer_state": "varint",
                 "armadillo_state": "varint",
                 "vector3": "vec3f",
@@ -2657,6 +2773,102 @@
           ]
         }
       ]
+    ],
+    "packet_common_custom_report_details": [
+      "container",
+      [
+        {
+          "name": "details",
+          "type": [
+            "array",
+            {
+              "countType": "varint",
+              "type": [
+                "container",
+                [
+                  {
+                    "name": "key",
+                    "type": "string"
+                  },
+                  {
+                    "name": "value",
+                    "type": "string"
+                  }
+                ]
+              ]
+            }
+          ]
+        }
+      ]
+    ],
+    "ServerLinkType": [
+      "mapper",
+      {
+        "type": "varint",
+        "mappings": {
+          "0": "bug_report",
+          "1": "community_guidelines",
+          "2": "support",
+          "3": "status",
+          "4": "feedback",
+          "5": "community",
+          "6": "website",
+          "7": "forums",
+          "8": "news",
+          "9": "announcements"
+        }
+      }
+    ],
+    "packet_common_server_links": [
+      "container",
+      [
+        {
+          "name": "links",
+          "type": [
+            "array",
+            {
+              "countType": "varint",
+              "type": [
+                "container",
+                [
+                  {
+                    "name": "hasKnownType",
+                    "type": "bool"
+                  },
+                  {
+                    "name": "knownType",
+                    "type": [
+                      "switch",
+                      {
+                        "compareTo": "hasKnownType",
+                        "fields": {
+                          "true": "ServerLinkType"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "name": "unknownType",
+                    "type": [
+                      "switch",
+                      {
+                        "compareTo": "hasKnownType",
+                        "fields": {
+                          "false": "anonymousNbt"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "name": "link",
+                    "type": "string"
+                  }
+                ]
+              ]
+            }
+          ]
+        }
+      ]
     ]
   },
   "handshaking": {
@@ -3303,7 +3515,9 @@
                     "0x0b": "transfer",
                     "0x0c": "feature_flags",
                     "0x0d": "tags",
-                    "0x0e": "select_known_packs"
+                    "0x0e": "select_known_packs",
+                    "0x0f": "custom_report_details",
+                    "0x10": "server_links"
                   }
                 }
               ]
@@ -3329,7 +3543,9 @@
                     "transfer": "packet_common_transfer",
                     "feature_flags": "packet_feature_flags",
                     "tags": "packet_tags",
-                    "select_known_packs": "packet_common_select_known_packs"
+                    "select_known_packs": "packet_common_select_known_packs",
+                    "custom_report_details": "packet_common_custom_report_details",
+                    "server_links": "packet_common_server_links"
                   }
                 }
               ]
@@ -3442,7 +3658,9 @@
                     "0x04": "keep_alive",
                     "0x05": "pong",
                     "0x06": "resource_pack_receive",
-                    "0x07": "select_known_packs"
+                    "0x07": "select_known_packs",
+                    "0x08": "custom_report_details",
+                    "0x09": "server_links"
                   }
                 }
               ]
@@ -3461,7 +3679,9 @@
                     "keep_alive": "packet_keep_alive",
                     "pong": "packet_pong",
                     "resource_pack_receive": "packet_resource_pack_receive",
-                    "select_known_packs": "packet_common_select_known_packs"
+                    "select_known_packs": "packet_common_select_known_packs",
+                    "custom_report_details": "packet_common_custom_report_details",
+                    "server_links": "packet_common_server_links"
                   }
                 }
               ]
@@ -4151,6 +4371,17 @@
               "type": "anonymousNbt"
             }
           ]
+        ],
+        "ChatTypeParameterType": [
+          "mapper",
+          {
+            "type": "varint",
+            "mappings": {
+              "0": "content",
+              "1": "sender",
+              "2": "target"
+            }
+          }
         ],
         "packet_profileless_chat": [
           "container",
@@ -5891,7 +6122,7 @@
             },
             {
               "name": "copyMetadata",
-              "type": "bool"
+              "type": "u8"
             }
           ]
         ],
@@ -7106,7 +7337,7 @@
                               [
                                 {
                                   "name": "uuid",
-                                  "type": "UUID"
+                                  "type": "string"
                                 },
                                 {
                                   "name": "amount",
@@ -7402,8 +7633,8 @@
               "type": "varint"
             },
             {
-              "name": "power",
-              "type": "vec3f64"
+              "name": "accelerationPower",
+              "type": "f64"
             }
           ]
         ],
@@ -8757,6 +8988,10 @@
             {
               "name": "sequence",
               "type": "varint"
+            },
+            {
+              "name": "rotation",
+              "type": "vec2f"
             }
           ]
         ],
