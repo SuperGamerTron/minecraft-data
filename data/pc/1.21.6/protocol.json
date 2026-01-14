@@ -3423,7 +3423,10 @@
         },
         {
           "name": "value",
-          "type": "ByteArray"
+          "type": [
+            "option",
+            "ByteArray"
+          ]
         }
       ]
     ],
@@ -5437,7 +5440,7 @@
               "name": "playerKnockback",
               "type": [
                 "option",
-                "vec3f"
+                "vec3f64"
               ]
             },
             {
